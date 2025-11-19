@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.briup.product_source.dao.QuarantineRegistrationMapper">
+    <!--基础查询结果集-->
+    <resultMap id="BaseResultMap" type="quarantineRegistration">
+        <id column="gr_id" property="grId"/>
+        <result column="gr_time" property="grTime"/>
+        <result column="gr_img" property="grImg"/>
+        <result column="gr_mechanism" property="grMechanism"/>
+        <result column="gr_batch_id" property="grBatchId"/>
+        <result column="b_qualified" property="bQualified"/>
+    </resultMap>
+
+    <!--基础sql字段-->
+    <sql id="Base_Column_List">
+        gr_id
+        , gr_time, gr_img, gr_mechanism, gr_batch_id,b_qualified
+    </sql>
+
+</mapper>

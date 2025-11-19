@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.briup.product_source.dao.DiseaseRecordMapper">
+    <!--基础查询结果集-->
+    <resultMap id="BaseResultMap" type="diseaseRecord">
+        <id column="dr_id" property="drId"/>
+        <result column="dr_animal_id" property="drAnimalId"/>
+        <result column="dr_desc" property="drDesc"/>
+        <result column="dr_cure" property="drCure"/>
+        <result column="dr_time" property="drTime"/>
+        <result column="dr_status" property="drStatus"/>
+        <result column="dr_d_id" property="drDId"/>
+    </resultMap>
+
+    <!--基础sql字段-->
+    <sql id="Base_Column_List">
+        dr_id
+        , dr_animal_id, dr_desc, dr_cure, dr_time, dr_status, dr_d_id
+    </sql>
+
+</mapper>

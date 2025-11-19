@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.briup.product_source.dao.ManagerHurdlesMapper">
+    <!--基础查询结果集-->
+    <resultMap id="BaseResultMap" type="managerHurdles">
+        <id property="hId" column="h_id"/>
+        <result property="hName" column="h_name"/>
+        <result property="hDesc" column="h_desc"/>
+        <result property="hMax" column="h_max"/>
+        <result property="hSaved" column="h_saved"/>
+        <result property="hTime" column="h_time"/>
+        <result property="hEnable" column="h_enable"/>
+        <result property="hFull" column="h_full"/>
+        <result property="hFenceId" column="h_fence_id"/>
+    </resultMap>
+
+    <!--基础sql字段-->
+    <sql id="Base_Column_List">
+        h_id
+        , h_name, h_desc, h_max, h_saved,
+        h_time, h_enable, h_full, h_fence_id
+    </sql>
+
+</mapper>

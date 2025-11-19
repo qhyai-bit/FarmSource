@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.briup.product_source.dao.ManagerFenceHouseMapper">
+    <!--基础查询结果集-->
+    <resultMap id="BaseResultMap" type="managerFenceHouse">
+        <id column="fh_id" property="fhId"/>
+        <result column="fh_name" property="fhName"/>
+        <result column="fh_desc" property="fhDesc"/>
+        <result column="fh_time" property="fhTime"/>
+    </resultMap>
+
+    <!--基础sql字段-->
+    <sql id="Base_Column_List">
+        fh_id, fh_name, fh_desc, fh_time
+    </sql>
+
+</mapper>
