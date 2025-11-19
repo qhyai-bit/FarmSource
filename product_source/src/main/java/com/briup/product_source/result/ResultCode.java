@@ -26,6 +26,9 @@ public enum ResultCode {
 
 	/* 栏舍管理模块错误 2001 - 2999 */
 	FENCE_HOUSE_IS_EXIST(2001, "栏舍名称已经存在"),
+	FENCE_HOUSE_NOT_EXIST(2002, "栏舍不存在"),
+	FENCE_HOUSENAME_IS_EXIST(2003, "栏舍名称已经存在"),
+	FENCE_HOUSE_ID_INVALID(2004, "栏舍编号无效"),
 	/* 栏圈管理模块错误 3001 - 3999 */
 
 	/* 动物管理模块错误 4001 - 4999 */

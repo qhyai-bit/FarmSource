@@ -23,4 +23,12 @@
         h_time, h_enable, h_full, h_fence_id
     </sql>
 
+    <!--查询指定栏舍下有多少栏圈-->
+    <select id="selectCountByFhId" resultType="java.lang.Integer">
+        select count(*)
+        from manager_hurdles
+        where h_fence_id = #{fhId}
+    </select>
+
+
 </mapper>

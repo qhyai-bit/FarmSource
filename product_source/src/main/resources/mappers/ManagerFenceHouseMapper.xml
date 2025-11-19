@@ -14,4 +14,68 @@
         fh_id, fh_name, fh_desc, fh_time
     </sql>
 
+    <!--条件查询栏舍信息-->
+    <select id="queryAllHouses" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List"/>
+        from manager_fence_house
+        <where>
+            <if test="fhName != null">
+                and fh_name like concat('%',#{fhName},'%')
+            </if>
+        </where>
+    </select>
+
+    <!--根据栏舍名称查询-->
+    <select id="selectByFhName" resultMap="BaseResultMap">
+        select *
+        from manager_fence_house
+        where fh_name = #{fhName}
+    </select>
+
+    <!--新增栏舍对象-->
+    <!-- fh_id为主键，是varchar类型，无法自动增长，必须传入-->
+    <insert id="insert">
+        insert into
+        manager_fence_house(fh_id, fh_name, fh_desc, fh_time)
+        values(#{fhId}, #{fhName}, #{fhDesc}, #{fhTime})
+    </insert>
+
+    <!--根据栏舍编号查询-->
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap">
+        select *
+        from manager_fence_house
+        where fh_id = #{fhId}
+    </select>
+
+    <!--更新栏舍对象-->
+    <update id="updateByPrimaryKey">
+        update manager_fence_house
+        <set>
+            <if test="fhName != null and fhName != ''">
+                fh_name = #{fhName},
+            </if>
+            <if test="fhDesc != null and fhDesc != ''">
+                fh_desc = #{fhDesc},
+            </if>
+            <if test="fhTime != null">
+                fh_time = #{fhTime},
+            </if>
+        </set>
+        where fh_id = #{fhId}
+    </update>
+
+    <!--删除栏舍对象-->
+    <delete id="deleteByPrimaryKey">
+        delete from manager_fence_house
+        where fh_id = #{fhId}
+    </delete>
+
+    <!--批量删除-->
+    <delete id="deleteBatchByIds">
+        delete from manager_fence_house
+        where fh_id in
+        <foreach collection="ids" item="id" separator="," open="(" close=")">
+            #{id}
+        </foreach>
+    </delete>
 </mapper>
