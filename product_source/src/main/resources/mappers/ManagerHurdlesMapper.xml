@@ -16,11 +16,23 @@
         <result property="hFenceId" column="h_fence_id"/>
     </resultMap>
 
+    <!--映射一对一的响应结果集-->
+    <resultMap id="BaseResultMapExt" type="managerHurdlesExt" extends="BaseResultMap">
+        <association property="managerFenceHouse" resultMap="com.briup.product_source.dao.ManagerFenceHouseMapper.BaseResultMap"/>
+    </resultMap>
+
     <!--基础sql字段-->
     <sql id="Base_Column_List">
         h_id
         , h_name, h_desc, h_max, h_saved,
         h_time, h_enable, h_full, h_fence_id
+    </sql>
+    <!--扩展sql字段-->
+    <sql id="Base_Column_ListExt">
+        mh.h_id
+        , mh.h_name, mh.h_desc, mh.h_max, mh.h_saved,
+        mh.h_time, mh.h_enable, mh.h_full, mh.h_fence_id
+        , mfh.fh_id, mfh.fh_name
     </sql>
 
     <!--查询指定栏舍下有多少栏圈-->
@@ -30,5 +42,45 @@
         where h_fence_id = #{fhId}
     </select>
 
+    <!--查询所有栏圈最大容量-->
+    <select id="selectAllMax" resultType="java.lang.Integer">
+        select DISTINCT h_max
+        from manager_hurdles
+    </select>
 
+    <!--条件查询栏圈以及栏舍信息-->
+    <select id="findHurdlesWithHouseByConditions" resultMap="BaseResultMapExt">
+        select <include refid="Base_Column_ListExt"/>
+        from manager_hurdles mh
+        left join manager_fence_house mfh
+        on mh.h_fence_id = mfh.fh_id
+        <where>
+            <if test="hName != null and hName != ''">
+                and mh.h_name like '%${hName}%'
+            </if>
+            <if test="hMax != null">
+                and mh.h_max = #{hMax}
+            </if>
+            <if test="fhName != null and fhName != ''">
+                and mfh.fh_name like '%${fhName}%'
+            </if>
+            <if test="hEnable != null and hEnable != ''">
+                and mh.h_enable = #{hEnable}
+            </if>
+        </where>
+        order by mh.h_id desc
+    </select>
+
+    <!--根据栏圈ID查询栏圈信息-->
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List"/>
+        from manager_hurdles
+        where h_id = #{hId}
+    </select>
+    <!--根据ID修改栏圈的状态-->
+    <update id="updateEnableById">
+        update manager_hurdles
+        set h_enable = #{hEnable}
+        where h_id = #{hId}
+    </update>
 </mapper>

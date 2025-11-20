@@ -24,4 +24,7 @@ public interface ManagerFenceHouseMapper {
 
     //批量删除栏舍
     int deleteBatchByIds(List<String> ids);
+
+    //查询所有栏舍
+    List<ManagerFenceHouse> findAll();
 }

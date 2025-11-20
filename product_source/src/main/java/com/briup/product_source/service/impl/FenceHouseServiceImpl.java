@@ -63,10 +63,12 @@ public class FenceHouseServiceImpl implements FenceHouseService {
             ManagerFenceHouse houseDB = houseMapper.selectByPrimaryKey(fhId);
             if (houseDB == null)//栏舍不存在
                 throw new ServiceException(ResultCode.FENCE_HOUSE_NOT_EXIST);
+
             //b.判断fhName是否有效[唯一 或 原值]
             String fhName = house.getFhName();
             if(isExist(fhName) && !fhName.equals(houseDB.getFhName()))//栏舍名称已经存在
                 throw new ServiceException(ResultCode.FENCE_HOUSENAME_IS_EXIST);
+
             //c.更新操作
             updateCount = houseMapper.updateByPrimaryKey(house);//底层调用updateByPrimaryKey方法
         } else {
@@ -75,7 +77,7 @@ public class FenceHouseServiceImpl implements FenceHouseService {
             if (isExist(house.getFhName()))//栏舍名称已经存在
                 throw new ServiceException(ResultCode.FENCE_HOUSENAME_IS_EXIST);
             //b.自动生成id值
-            String id = UUID.randomUUID().toString().replaceAll("-", "");
+            String id = UUID.randomUUID().toString().replace("-", "");
             house.setFhId(id);
             //c.新增栏舍
             updateCount = houseMapper.insert(house);
@@ -129,6 +131,11 @@ public class FenceHouseServiceImpl implements FenceHouseService {
         int deleteCount = houseMapper.deleteBatchByIds(list);
         if (deleteCount == 0)//删除失败
             throw new ServiceException(ResultCode.FAIL);
+    }
+
+    @Override
+    public List<ManagerFenceHouse> findAll() {
+        return houseMapper.findAll();
     }
 
     //工具方法：判断fh_name是否已经存在

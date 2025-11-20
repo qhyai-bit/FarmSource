@@ -62,4 +62,10 @@ public class FenceHouseController {
         return Result.success();
     }
 
+    @ApiOperation("查询所有的栏舍信息")
+    @GetMapping("/queryAll")
+    public Result queryAll() {
+        List<ManagerFenceHouse> list = houseService.findAll();
+        return Result.success(list);
+    }
 }

@@ -19,7 +19,7 @@
         select <include refid="Base_Column_List"/>
         from manager_fence_house
         <where>
-            <if test="fhName != null">
+            <if test="fhName != null and fhName != ''">
                 and fh_name like concat('%',#{fhName},'%')
             </if>
         </where>
@@ -78,4 +78,10 @@
             #{id}
         </foreach>
     </delete>
+
+    <!--查询所有栏舍信息-->
+    <select id="findAll" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List"/>
+        from manager_fence_house
+    </select>
 </mapper>

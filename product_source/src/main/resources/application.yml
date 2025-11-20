@@ -26,3 +26,10 @@ mybatis:
   type-aliases-package: com.briup.product_source.pojo
   # mapper映射文件所在的位置
   mapper-locations: classpath:mappers/**/*.xml
+
+#阿里云OSS
+aliyun:
+  oss:
+    endpoint: https://oss-cn-beijing.aliyuncs.com
+    bucketName: java-web-al
+    region: cn-beijing

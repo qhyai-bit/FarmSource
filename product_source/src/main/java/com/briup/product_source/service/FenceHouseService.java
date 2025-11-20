@@ -42,5 +42,9 @@ public interface FenceHouseService {
      * @param ids 栏舍id
      */
     void removeBatch(List<String> ids);
+
+    //查询所有栏舍信息(单表)
+    List<ManagerFenceHouse> findAll();
+
 }
 
