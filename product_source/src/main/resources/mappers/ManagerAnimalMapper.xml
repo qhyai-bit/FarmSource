@@ -20,4 +20,16 @@
         , a_weight, a_gender, a_healthy, a_status, a_inoculate, a_time, a_batch_id, a_hurdles_id
     </sql>
 
+    <!--根据动物编号查询动物信息-->
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List"/>
+        from manager_animal
+        where a_animal_id = #{aAnimalId}
+    </select>
+    <!--根据编号修改动物健康状态-->
+    <update id="updateHealthyByAnimalId">
+        update manager_animal
+        set a_healthy = #{healthy}
+        where a_animal_id = #{animalId}
+    </update>
 </mapper>

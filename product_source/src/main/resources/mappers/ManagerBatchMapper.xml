@@ -16,4 +16,24 @@
         , b_desc, b_quarantine, b_qualified, b_time
     </sql>
 
+    <!--查询所有未检疫的批次信息-->
+    <select id="selectAllUnquarantined" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List"/>
+        from manager_batch
+        where b_quarantine = "未检疫"
+    </select>
+
+    <!--查询批次信息-->
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List"/>
+        from manager_batch
+        where b_serial_id = #{batchId}
+    </select>
+    <!--根据批次编号修改批次检疫状态为已检疫和检疫合格状态-->
+    <update id="updateQualifiedById">
+        update manager_batch
+        set b_quarantine = "已检疫",
+            b_qualified = #{bQualified}
+        where b_serial_id = #{batchId}
+    </update>
 </mapper>

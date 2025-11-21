@@ -4,4 +4,25 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.briup.product_source.dao.ext.DiseaseRecordExtMapper">
 
+    <!--映射一对一的查询结果集-->
+    <resultMap id="RecordWithDiseaseMap" type="DiseaseRecordExt"
+               extends="com.briup.product_source.dao.DiseaseRecordMapper.BaseResultMap">
+        <association property="disease" javaType="managerDisease"
+                     resultMap="com.briup.product_source.dao.ManagerDiseaseMapper.BaseResultMap"/>
+    </resultMap>
+
+    <!--条件查询动物的病症治疗记录信息(含病症信息)-->
+    <select id="selectDiseasedAnimal" resultMap="RecordWithDiseaseMap">
+        SELECT *
+        FROM manager_disease a inner join disease_record b
+        on a.d_id = b.dr_d_id
+        <where>
+            <if test="drStatus != null and drStatus != ''">
+                dr_status = #{drStatus}
+            </if>
+            <if test="drDId != null">
+                AND dr_d_id = #{drDId}
+            </if>
+        </where>
+    </select>
 </mapper>

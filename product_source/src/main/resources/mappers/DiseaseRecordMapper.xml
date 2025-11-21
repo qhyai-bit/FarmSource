@@ -18,4 +18,26 @@
         , dr_animal_id, dr_desc, dr_cure, dr_time, dr_status, dr_d_id
     </sql>
 
+    <!--根据主键查询治疗记录-->
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List"/>
+        from disease_record
+        where dr_id = #{drId}
+    </select>
+    <!--根据编号修改病症记录-->
+    <update id="updateByPrimaryKey">
+        update disease_record
+        set dr_animal_id = #{drAnimalId},
+            dr_desc = #{drDesc},
+            dr_cure = #{drCure},
+            dr_time = #{drTime},
+            dr_status = #{drStatus},
+            dr_d_id = #{drDId}
+        where dr_id = #{drId}
+    </update>
+    <!--添加病症记录-->
+    <insert id="insert">
+        insert into disease_record (dr_id, dr_animal_id, dr_desc, dr_cure, dr_time, dr_status, dr_d_id)
+        values (#{drId}, #{drAnimalId}, #{drDesc}, #{drCure}, #{drTime}, #{drStatus}, #{drDId})
+    </insert>
 </mapper>

@@ -17,4 +17,35 @@
         , gr_time, gr_img, gr_mechanism, gr_batch_id,b_qualified
     </sql>
 
+    <!--查询所有检疫记录-->
+    <select id="selectAllRecord" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List"/>
+        from quarantine_registration
+        <where>
+            <if test="mechanism != null and mechanism != ''">
+                and gr_mechanism like concat('%',#{mechanism},'%')
+            </if>
+            <if test="bQualified != null and bQualified != ''">
+                and b_qualified = #{bQualified}
+            </if>
+        </where>
+        order by gr_time desc
+    </select>
+
+    <!--修改检疫登记信息-->
+    <update id="updateByPrimaryKey" parameterType="QuarantineRegistration">
+        update quarantine_registration
+        set gr_time = #{grTime},
+            gr_img = #{grImg},
+            gr_mechanism = #{grMechanism},
+            gr_batch_id = #{grBatchId},
+            b_qualified = #{bQualified}
+        where gr_id = #{grId}
+    </update>
+
+    <!--添加检疫登记信息-->
+    <insert id="insert" parameterType="QuarantineRegistration">
+        insert into quarantine_registration(gr_time, gr_img, gr_mechanism, gr_batch_id,b_qualified)
+        values(#{grTime}, #{grImg}, #{grMechanism}, #{grBatchId},#{bQualified})
+    </insert>
 </mapper>

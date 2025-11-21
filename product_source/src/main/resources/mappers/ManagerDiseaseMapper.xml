@@ -18,4 +18,10 @@
         , d_name, d_desc, d_type, d_etiology, d_symptom, d_prevention
     </sql>
 
+    <!--查询所有病症信息-->
+    <select id="selectAll" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List"/>
+        from manager_disease
+    </select>
+
 </mapper>
