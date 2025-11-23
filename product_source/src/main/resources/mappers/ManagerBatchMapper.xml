@@ -36,4 +36,10 @@
             b_qualified = #{bQualified}
         where b_serial_id = #{batchId}
     </update>
+
+    <!--查询所有批次信息-->
+    <select id="selectAllBatches" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List"/>
+        from manager_batch
+    </select>
 </mapper>

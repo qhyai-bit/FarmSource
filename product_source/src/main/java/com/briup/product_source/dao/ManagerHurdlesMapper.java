@@ -25,4 +25,10 @@ public interface ManagerHurdlesMapper {
     ManagerHurdles selectByPrimaryKey(String hId);
     //更新指定栏圈启用状态
     int updateEnableById(String hId, String hEnable);
+
+    //查询所有可用、未满栏圈
+    List<ManagerHurdles> selectAllEnable();
+
+    //更新栏圈信息
+    int updateByPrimaryKey(ManagerHurdles hurdles);
 }

@@ -4,4 +4,32 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.briup.product_source.dao.ext.ManagerAnimalExtMapper">
 
+    <!-- 自定义映射规则 -->
+    <resultMap id="AnimalExtResult" type="ManagerAnimalExt"
+               extends="com.briup.product_source.dao.ManagerAnimalMapper.BaseResultMap">
+        <!-- 栏圈名称、栏舍名称、二维码图片 -->
+        <result column="h_name" property="managerHurdles"/>
+        <result column="fh_name" property="managerFenceHouse"/>
+        <result column="q_image_url" property="url"/>
+        <!-- 一对一 映射批次对象 -->
+        <association property="managerBatch" resultMap="com.briup.product_source.dao.ManagerBatchMapper.BaseResultMap"/>
+    </resultMap>
+
+    <!--多表连接查询，注意栏圈表、栏舍表、二维码表，都只需要查询一个字段即可-->
+    <select id="selectAnimalRelated" resultMap="AnimalExtResult">
+        select *
+        from manager_animal ma
+        inner join manager_batch mb on ma.a_batch_id = mb.b_serial_id
+        inner join manager_hurdles mh on ma.a_hurdles_id = mh.h_id
+        inner join manager_fence_house mfh on mh.h_fence_id = mfh.fh_id
+        <where>
+            <if test="aHealthy != null and aHealthy != ''">
+                and ma.a_healthy = #{aHealthy}
+            </if>
+            <if test="aGender != null and aGender != ''">
+                and ma.a_gender = #{aGender}
+            </if>
+        </where>
+        order by ma.a_batch_id
+    </select>
 </mapper>

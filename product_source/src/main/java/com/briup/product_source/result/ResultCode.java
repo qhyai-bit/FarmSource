@@ -30,9 +30,10 @@ public enum ResultCode {
 	FENCE_HOUSENAME_IS_EXIST(2003, "栏舍名称已经存在"),
 	FENCE_HOUSE_ID_INVALID(2004, "栏舍编号无效"),
 	/* 栏圈管理模块错误 3001 - 3999 */
-
+	HURDLES_NOT_EXIST(3001, "栏圈不存在"),
 	/* 动物管理模块错误 4001 - 4999 */
 	ANIMAL_IS_NOT_IN_BREEDING(4001, "动物不在养殖中，无法添加病症记录"),
+	ANIMAL_NOT_EXIST(4002, "动物不存在"),
 
 	BATCH_NOT_EXIST(4010, "批次不存在")
 	/* 指标记录模块错误 5001 - 5999 */

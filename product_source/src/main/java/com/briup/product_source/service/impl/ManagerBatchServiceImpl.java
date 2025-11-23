@@ -23,4 +23,9 @@ public class ManagerBatchServiceImpl implements ManagerBatchService {
         }
         return list;
     }
+
+    @Override
+    public List<ManagerBatch> findAll() {
+        return batchMapper.selectAllBatches();
+    }
 }

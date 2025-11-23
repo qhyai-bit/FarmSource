@@ -1,5 +1,6 @@
 package com.briup.product_source.service;
 
+import com.briup.product_source.pojo.ManagerHurdles;
 import com.briup.product_source.pojo.ext.ManagerHurdlesExt;
 import com.github.pagehelper.PageInfo;
 
@@ -21,4 +22,7 @@ public interface HurdlesService {
 
     //批量修改栏圈的可用状态
     void modifyStatusBatch(List<Map<String, String>> list);
+
+    //查询所有栏圈信息(可用、未满)
+    List<ManagerHurdles> findAllEnable();
 }

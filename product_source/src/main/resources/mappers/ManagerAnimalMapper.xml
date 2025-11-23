@@ -32,4 +32,47 @@
         set a_healthy = #{healthy}
         where a_animal_id = #{animalId}
     </update>
+
+
+    <!--根据编号修改动物信息-->
+    <update id="updateByPrimaryKey">
+    update manager_animal
+    <set>
+        <if test="aWeight != null and aWeight != ''">
+            a_weight = #{aWeight},
+        </if>
+        <if test="aGender != null and aGender != ''">
+            a_gender = #{aGender},
+        </if>
+        <if test="aHealthy != null and aHealthy != ''">
+        a_healthy = #{aHealthy},
+        </if>
+        <if test="aStatus != null and ''">
+            a_status = #{aStatus},
+        </if>
+        <if test="aInoculate != null and aInoculate !=''">
+            a_inoculate = #{aInoculate},
+        </if>
+        <if test="aTime != null">
+            a_time = #{aTime},
+        </if>
+        <if test="aBatchId != null and aBatchId != ''">
+            a_batch_id = #{aBatchId},
+        </if>
+        <if test="aHurdlesId != null and aHurdlesId != ''">
+            a_hurdles_id = #{aHurdlesId}
+        </if>
+    </set>
+        where a_animal_id = #{aAnimalId}
+    </update>
+    <!--添加动物信息-->
+    <insert id="insert">
+        insert into manager_animal (
+            a_animal_id, a_weight, a_gender,
+            a_healthy, a_status, a_inoculate,
+            a_time, a_batch_id, a_hurdles_id)
+        values (#{aAnimalId}, #{aWeight}, #{aGender},
+                #{aHealthy}, #{aStatus}, #{aInoculate},
+                #{aTime}, #{aBatchId}, #{aHurdlesId})
+    </insert>
 </mapper>

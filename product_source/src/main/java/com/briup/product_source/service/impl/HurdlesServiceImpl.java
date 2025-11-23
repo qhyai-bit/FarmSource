@@ -80,4 +80,9 @@ public class HurdlesServiceImpl implements HurdlesService {
         if (sum == 0)
             throw new ServiceException(ResultCode.FAIL);
     }
+
+    @Override
+    public List<ManagerHurdles> findAllEnable() {
+        return hurdlesMapper.selectAllEnable();
+    }
 }

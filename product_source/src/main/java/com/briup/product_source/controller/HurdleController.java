@@ -1,5 +1,6 @@
 package com.briup.product_source.controller;
 
+import com.briup.product_source.pojo.ManagerHurdles;
 import com.briup.product_source.pojo.ext.ManagerHurdlesExt;
 import com.briup.product_source.result.Result;
 import com.briup.product_source.service.HurdlesService;
@@ -63,5 +64,12 @@ public class HurdleController {
     public Result changeStatusBatch(@RequestBody List<Map<String,String>> list){
         hurdlesService.modifyStatusBatch(list);
         return Result.success();
+    }
+
+    @ApiOperation("查询所有栏圈信息(可用、未满)")
+    @GetMapping("/queryAllEnable")
+    public Result getAllEnableHurdles() {
+        List<ManagerHurdles> list = hurdlesService.findAllEnable();
+        return Result.success(list);
     }
 }

@@ -25,4 +25,11 @@ public class BatchController {
         List<ManagerBatch> batches = batchService.findAllUnquarantined();
         return Result.success(batches);
     }
+
+    @ApiOperation("查询所有批次信息接口")
+    @GetMapping("/queryAll")
+    public Result queryAllBatches() {
+        List<ManagerBatch> batches = batchService.findAll();
+        return Result.success(batches);
+    }
 }

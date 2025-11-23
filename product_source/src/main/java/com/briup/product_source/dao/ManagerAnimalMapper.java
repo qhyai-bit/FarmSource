@@ -10,4 +10,9 @@ public interface ManagerAnimalMapper {
     ManagerAnimal selectByPrimaryKey(String drAnimalId);
     //更新动物健康状态
     int updateHealthyByAnimalId(String healthy, String animalId);
+
+    //更新动物信息
+    int updateByPrimaryKey(ManagerAnimal animal);
+    //新增动物
+    int insert(ManagerAnimal animal);
 }

@@ -14,4 +14,7 @@ public interface ManagerBatchMapper {
     ManagerBatch selectByPrimaryKey(String batchId);
     //更新批次表中检疫状态
     int updateQualifiedById(String bQualified, String batchId);
+
+    //查询所有批次信息
+    List<ManagerBatch> selectAllBatches();
 }

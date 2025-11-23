@@ -77,10 +77,53 @@
         from manager_hurdles
         where h_id = #{hId}
     </select>
+
     <!--根据ID修改栏圈的状态-->
     <update id="updateEnableById">
         update manager_hurdles
         set h_enable = #{hEnable}
+        where h_id = #{hId}
+    </update>
+
+    <!--查询所有可用栏圈-->
+    <select id="selectAllEnable" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List"/>
+        from manager_hurdles
+        where h_enable = '可用' and h_full = '未满'
+    </select>
+
+    <!--根据栏圈编号修改栏圈信息-->
+    <update id="updateByPrimaryKey">
+        update manager_hurdles
+        <set>
+            <if test="hName != null and hName != ''">
+                h_name = #{hName},
+            </if>
+            <if test="hDesc != null and hDesc != ''">
+                h_desc = #{hDesc},
+            </if>
+            <if test="hMax != null">
+                h_max = #{hMax},
+            </if>
+            <if test="hSaved != null">
+                h_saved = #{hSaved},
+            </if>
+            <if test="hTime != null">
+                h_time = #{hTime},
+            </if>
+            <if test="hEnable != null and hEnable != ''">
+                h_enable = #{hEnable},
+            </if>
+            <if test="hFull != null and hFull != ''">
+                h_full = #{hFull},
+            </if>
+            <if test="hFenceId != null">
+            h_fence_id = #{hFenceId},
+            </if>
+            <if test="hId != null and hId != ''">
+                h_id = #{hId}
+            </if>
+        </set>
         where h_id = #{hId}
     </update>
 </mapper>
