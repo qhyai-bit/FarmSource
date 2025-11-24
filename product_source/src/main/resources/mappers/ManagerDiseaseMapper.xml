@@ -24,4 +24,15 @@
         from manager_disease
     </select>
 
+    <!--大屏统计病症信息，涉及2张表：病症表、患病记录表
+    查询内容：病症名称、患该病的动物数量
+    查询得到的每一行数据 会 映射成一个Map对象：key为列名，value为列值
+    例如：{"d_name": "流行性感冒", "sum": 2}
+    -->
+    <select id="countDisease" resultType="map">
+        select md.d_name,count(*) as 'sum'
+        from manager_disease md,disease_record dr
+        where md.d_id = dr.dr_d_id
+        group by md.d_name
+    </select>
 </mapper>

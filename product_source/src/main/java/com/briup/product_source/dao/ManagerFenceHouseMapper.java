@@ -27,4 +27,7 @@ public interface ManagerFenceHouseMapper {
 
     //查询所有栏舍
     List<ManagerFenceHouse> findAll();
+
+    //查询栏舍、栏圈、动物、冷库、员工数量，注意：涉及多张表，使用UNION ALL合并结果
+    List<Object> countAllResources();
 }

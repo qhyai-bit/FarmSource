@@ -18,4 +18,12 @@
         , isr_time, isr_num, isr_price, isr_deliver, isr_status, isr_customer_id
     </sql>
 
+    <!--大屏查询当前年度 每月销售数据-->
+    <select id="countSales" resultType="map">
+        SELECT MONTH(isr_time) AS "月份", sum(isr_num) AS "销售总数"
+        FROM issue_record
+        WHERE YEAR(isr_time) = YEAR(CURDATE())
+        GROUP BY MONTH(isr_time)
+    </select>
+
 </mapper>

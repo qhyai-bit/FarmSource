@@ -3,6 +3,8 @@ package com.briup.product_source.dao;
 import com.briup.product_source.pojo.ManagerAnimal;
 import org.springframework.stereotype.Repository;
 
+import java.util.Map;
+
 @Repository
 public interface ManagerAnimalMapper {
 
@@ -15,4 +17,7 @@ public interface ManagerAnimalMapper {
     int updateByPrimaryKey(ManagerAnimal animal);
     //新增动物
     int insert(ManagerAnimal animal);
+
+    //统计各区间动物数量
+    Map<String, Integer> countWeight();
 }

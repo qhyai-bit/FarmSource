@@ -26,6 +26,7 @@
         from manager_animal
         where a_animal_id = #{aAnimalId}
     </select>
+
     <!--根据编号修改动物健康状态-->
     <update id="updateHealthyByAnimalId">
         update manager_animal
@@ -75,4 +76,19 @@
                 #{aHealthy}, #{aStatus}, #{aInoculate},
                 #{aTime}, #{aBatchId}, #{aHurdlesId})
     </insert>
+
+    <!--大屏统计动物体重：30以下,30-50,50以上
+        查询结果映射到 map对象中
+        例如：{
+            "30以下": 13,
+            "50以上": 3,
+            ...
+        }
+    -->
+    <select id="countWeight" resultType="map">
+        SELECT COUNT(a_weight <![CDATA[<]]> 30 OR NULL) as "30以下",
+               COUNT(a_weight > 50 OR NULL) as "50以上",
+               COUNT(a_weight >= 30 AND a_weight <![CDATA[<=]]> 50 OR NULL) as "30~50"
+        from manager_animal
+    </select>
 </mapper>

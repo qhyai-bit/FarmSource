@@ -84,4 +84,22 @@
         select <include refid="Base_Column_List"/>
         from manager_fence_house
     </select>
+
+    <!--查询栏舍、栏圈、动物、冷库、员工数量-->
+    <select id="countAllResources" resultType="Integer">
+        SELECT COUNT(*)
+        FROM manager_fence_house
+        UNION ALL
+        SELECT COUNT(*)
+        FROM manager_hurdles
+        UNION ALL
+        SELECT COUNT(*)
+        FROM manager_animal
+        UNION ALL
+        SELECT COUNT(*)
+        FROM manager_freezer
+        UNION ALL
+        SELECT COUNT(*)
+        FROM base_account
+    </select>
 </mapper>
